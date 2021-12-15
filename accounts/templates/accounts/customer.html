@@ -28,7 +28,7 @@
 		<div class="card card-body">
 			<h5>Total Orders</h5>
 			<hr>
-			<h1 style="text-align: center;padding: 10px">{{tot_orders}}</h1>
+			<h1 style="text-align: center;padding: 10px"> {{ customer.orders }} </h1>
 		</div>
 	</div>
 </div>
@@ -39,6 +39,7 @@
 	<div class="col">
 		<div class="card card-body">
 			<form method="get">
+				{{myFilter.form}}
 
 		    <button class="btn btn-primary" type="submit">Search</button>
 		  </form>
