@@ -21,3 +21,59 @@ body{
 	background-color: #7cd1c0;
 	
 }
+
+
+
+  * {
+	box-sizing: border-box;
+  }
+  body {
+	transition: background 0.2s linear;
+
+  }
+  body.dark {
+	background-color: #292c35;
+	color: #ebeff5;
+  }
+  .checkbox {
+	opacity: 0;
+	position: absolute;
+  }
+  
+  .label {
+	width: 45px;
+	height: 21px;
+	background-color:#111;
+	display: flex;
+	border-radius:50px;
+	align-items: center;
+	justify-content: space-between;
+	padding: 5px;
+	position: relative;
+	transform: scale(1.5);
+  }
+  
+  .ball {
+	width: 20px;
+	height: 20px;
+	background-color: white;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	border-radius: 50%;
+	transition: transform 0.2s linear;
+  }
+  
+  /*  target the elemenent after the label*/
+  .checkbox:checked + .label .ball{
+	transform: translateX(24px);
+  }
+  
+  .fa-moon {
+	color: pink;
+  }
+  
+  .fa-sun {
+	color: yellow;
+  }
+
