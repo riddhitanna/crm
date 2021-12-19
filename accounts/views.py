@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from .models import *
-from . forms import OrderForm
+from . forms import *
 from .filters import OrderFilter
 
 def dashBoard(request):
@@ -71,3 +71,29 @@ def deleteOrder(request, pk):
 		return redirect(customer_url)
 		
 	return render(request, 'accounts/delete_item.html', {'item':order})
+
+def createCustomer(request):
+	action = 'create'
+	form = CustomerForm()
+	if request.method == 'POST':
+		form = CustomerForm(request.POST)
+		if form.is_valid():
+			form.save()
+			return redirect('/')
+
+	context =  {'action':action, 'form':form}
+	#return render(request, 'accounts/order_form.html', context)
+	return render(request, 'accounts/create_customer.html', context)
+
+def createProduct(request):
+	action = 'create'
+	form = ProductForm()
+	if request.method == 'POST':
+		form = ProductForm(request.POST)
+		if form.is_valid():
+			form.save()
+			return redirect('/')
+
+	context =  {'action':action, 'form':form}
+	#return render(request, 'accounts/order_form.html', context)
+	return render(request, 'accounts/create_product.html', context)
