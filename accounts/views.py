@@ -70,7 +70,7 @@ def deleteOrder(request, pk):
 		order.delete()
 		return redirect(customer_url)
 		
-	return render(request, 'accounts/delete_item.html', {'item':order})
+	return render(request, 'accounts/delete.html', {'item':order})
 
 def createCustomer(request):
 	action = 'create'
@@ -83,6 +83,28 @@ def createCustomer(request):
 
 	context =  {'action':action, 'form':form}
 	#return render(request, 'accounts/order_form.html', context)
+	return render(request, 'accounts/create_customer.html', context)
+
+def deleteCustomer(request, pk):
+	customer = Customer.objects.get(id=pk)
+	if request.method == 'POST':
+		customer.delete()
+		return redirect('/')
+		
+	return render(request, 'accounts/delete_customer.html', {'item':customer})
+
+def updateCustomer(request, pk):
+	action = 'update'
+	customer = Customer.objects.get(id=pk)
+	form = CustomerForm(instance=customer)
+
+	if request.method == 'POST':
+		form = CustomerForm(request.POST, instance=customer)
+		if form.is_valid():
+			form.save()
+			return redirect('/customer/' + str(customer.id))
+
+	context =  {'action':action, 'form':form}
 	return render(request, 'accounts/create_customer.html', context)
 
 def createProduct(request):
